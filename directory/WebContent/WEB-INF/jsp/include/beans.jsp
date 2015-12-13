@@ -1,0 +1,1 @@
+<jsp:useBean id="logged" class="directory.model.Person" scope="session" />
