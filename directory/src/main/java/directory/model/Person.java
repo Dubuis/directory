@@ -50,64 +50,109 @@ public class Person {
 	@Column(name=PASSWORD)
 	private String password;
 	
+	/**
+	 * Empty constructor
+	 */
 	public Person() {}
-
+	
+	/**
+	 * @return the id
+	 */
 	public long getId() {
 		return id;
 	}
-	
+
+	/**
+	 * @return the familyName
+	 */
 	public String getFamilyName() {
 		return familyName;
 	}
 
+	/**
+	 * @return the firstName
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
+	/**
+	 * @return the email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * @return the webSite
+	 */
 	public String getWebSite() {
 		return webSite;
 	}
 
+	/**
+	 * @return the birthDate
+	 */
 	public Date getBirthDate() {
 		return birthDate;
 	}
 
+	/**
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
-	
+
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
+	/**
+	 * @param familyName the familyName to set
+	 */
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
 	}
 
+	/**
+	 * @param firstName the firstName to set
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+	/**
+	 * @param email the email to set
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * @param webSite the webSite to set
+	 */
 	public void setWebSite(String webSite) {
 		this.webSite = webSite;
 	}
 
+	/**
+	 * @param birthDate the birthDate to set
+	 */
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
+	/**
+	 * @param password the password to set
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	@Override
 	public boolean equals(Object p) {
 		if(!(p instanceof Person)) {

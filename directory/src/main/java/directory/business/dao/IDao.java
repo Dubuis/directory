@@ -6,7 +6,14 @@ import directory.model.Group;
 import directory.model.Person;
 
 public interface IDao {
+	/**
+	 * Prepares the use of this class.
+	 */
 	public void init();
+	
+	/**
+	 * Terminates properly to the use of this class.
+	 */
 	public void close();
 	
 	/**

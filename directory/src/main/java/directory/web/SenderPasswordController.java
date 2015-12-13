@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import directory.business.dao.IDao;
 import directory.model.Person;
 
+/**
+ * This class is used as controller for send password when standard user forget it
+ * @author Eldoran
+ *
+ */
 @Controller
 public class SenderPasswordController {
 	private static String SENDER = "directoryapplication.noreply@gmail.com";
@@ -29,6 +34,15 @@ public class SenderPasswordController {
 	@Autowired
 	IDao dao;
 	
+	/**
+	 * Print page for send forget password
+	 * And call sendMail afer validation
+	 * @param modified
+	 * @param mail
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("sendPassword")
 	public String sendPassword(
 			@RequestParam(required=false) Boolean modified,
@@ -67,7 +81,12 @@ public class SenderPasswordController {
 		}
 		return "redirect:";
 	}
-
+	
+	/**
+	 * Send a email to the address in parameter person
+	 * The mail content person.id, person.password
+	 * @param p
+	 */
 	private void sendMail(Person p) {
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");

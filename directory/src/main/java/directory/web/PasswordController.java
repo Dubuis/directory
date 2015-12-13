@@ -11,11 +11,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import directory.business.dao.IDao;
 import directory.model.Person;
 
+/**
+ * This class is used as controller for modification of standard user password
+ * @author Eldoran
+ * TODO Add back for user
+ */
 @Controller
 public class PasswordController {
 	@Autowired
 	IDao dao;
 	
+	/**
+	 * Used for print form and save modification after validation
+	 * @param currentPassword
+	 * @param newPassword
+	 * @param confirmPassword
+	 * @param id
+	 * @param modified
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("editPassword")
 	public String editPassword(
 			@RequestParam(required=false) String currentPassword,

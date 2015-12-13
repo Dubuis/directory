@@ -7,6 +7,11 @@ import org.springframework.validation.Validator;
 
 import directory.model.Person;
 
+/**
+ * This class is Validator of Person class
+ * @author Eldoran
+ *
+ */
 @Service
 public class PersonValidator implements Validator {
 

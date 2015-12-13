@@ -19,19 +19,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 import directory.business.dao.IDao;
 import directory.model.Person;
 
+/**
+ * This class is used as controller for form of person
+ * @author Eldoran
+ *
+ */
 @Controller
 public class PersonController {
 	@Autowired
 	IDao dao;
-
+	
 	PersonValidator personValidator = new PersonValidator();
 
+	/**
+	 * Format the date
+	 * @param binder
+	 */
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
-
+	
+	/**
+	 * Used as ModelAttribute
+	 * @param idPerson
+	 * @return
+	 */
 	@ModelAttribute("person")
 	Person person(@RequestParam(required = true) Long idPerson) {
 		try {
@@ -41,7 +55,20 @@ public class PersonController {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Return the page with form (filled if id definied)
+	 * And save modification after validation
+	 * @param idPerson
+	 * @param birthDate
+	 * @param modified
+	 * @param person
+	 * @param result
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("editPerson")
 	public String personFormController(
 			@RequestParam(required=true) Long idPerson,

@@ -14,6 +14,11 @@ import directory.business.dao.IDao;
 import directory.model.Group;
 import directory.model.Person;
 
+/**
+ * This class is the controller of admin interface
+ * @author Eldoran
+ *
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -23,21 +28,38 @@ public class AdminController {
 	@Autowired
 	IDao dao;
 	
+	/**
+	 * Use as ModelAttribute
+	 * @return all persons
+	 */
 	@ModelAttribute(value="persons")
 	public Collection<Person> persons() {
 		return dao.findAllPersons();
 	}
 	
+	/**
+	 * Use as ModelAttribute
+	 * @return all groups
+	 */
 	@ModelAttribute("groups")
 	Collection<Group> groups() {
 		return dao.findAllGroups();
 	}
 	
+	/**
+	 * Root of admin page
+	 * @return adminLogin.jsp page
+	 */
 	@RequestMapping("")
 	public String admin() {
 		return "adminLogin";
 	}
 	
+	/**
+	 * Logout an admin
+	 * @param request
+	 * @return root page of standard user
+	 */
 	@RequestMapping("logout")
 	public String adminLogout(
 			HttpServletRequest request
@@ -46,6 +68,13 @@ public class AdminController {
 		return "redirect:../";
 	}
 	
+	/**
+	 * Login an admin
+	 * @param id
+	 * @param password
+	 * @param request
+	 * @return redirect to root if id/pwd false, redirect to adminManager.jsp else
+	 */
 	@RequestMapping("/login")
 	public String adminLogin(
 			@RequestParam(required=true) Long id,
@@ -59,6 +88,11 @@ public class AdminController {
 		return "redirect:adminManager";
 	}
 	
+	/**
+	 * adminManager page servlet
+	 * @param request
+	 * @return redirect to root of standard user if not logged, in adminManager.jsp page else.
+	 */
 	@RequestMapping("/adminManager")
 	public String adminManager(
 			HttpServletRequest request
@@ -69,6 +103,13 @@ public class AdminController {
 		return "adminManager";
 	}
 	
+	/**
+	 * addGroup page servlet
+	 * @param group
+	 * @param modified
+	 * @param request
+	 * @return redirect to root standard page id not logged in adminAddGroup.jsp page else.
+	 */
 	@RequestMapping("/addGroup")
 	public String addGroup(
 			@ModelAttribute Group group,
@@ -85,6 +126,10 @@ public class AdminController {
 		return "adminAddGroup";
 	}
 	
+	/**
+	 * TODO
+	 * @return
+	 */
 	@RequestMapping("/editPerson")
 	public String editPerson() {
 		return "adminEditPerson";

@@ -37,28 +37,49 @@ public class Group {
 			)
 	private List<Person> list;
 	
+	/**
+	 * Empty constructor
+	 */
 	public Group() {}
-	
+
+	/**
+	 * @return the id
+	 */
 	public long getId() {
 		return id;
 	}
-	
+
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
-	
+
+	/**
+	 * @return the list
+	 */
 	public List<Person> getList() {
 		return list;
 	}
-	
+
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	/**
+	 * @param list the list to set
+	 */
 	public void setList(List<Person> list) {
 		this.list = list;
 	}
