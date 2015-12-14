@@ -1,5 +1,6 @@
 package directory.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -10,6 +11,10 @@ import javax.persistence.*;
 	@NamedQuery(
 			name="findAllGroups",
 			query="SELECT g FROM Group g"
+			),
+	@NamedQuery(
+			name="findAllPersonsInGroup",
+			query="SELECT g.list FROM Group g WHERE g.id = :idGroup"
 			)
 })
 public class Group {
@@ -35,7 +40,7 @@ public class Group {
 			inverseJoinColumns=
 				@JoinColumn(name=ID_PERSON)
 			)
-	private List<Person> list;
+	private List<Person> list = new ArrayList<Person>();
 	
 	/**
 	 * Empty constructor

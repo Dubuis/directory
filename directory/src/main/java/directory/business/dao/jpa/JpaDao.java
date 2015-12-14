@@ -123,6 +123,9 @@ public class JpaDao implements IDao {
 	public void removePersonFromGroup(long idPerson, long idGroup) {
 		Group g = em.find(Group.class, idGroup);
 		Person p = em.find(Person.class, idPerson);
+		if(g == null || p == null) {
+			return;
+		}
 		g.getList().remove(p);
 		try {
 			em.getTransaction().begin();
@@ -139,6 +142,9 @@ public class JpaDao implements IDao {
 	public void addPersonInGroup(long idPerson, long idGroup) {
 		Person p = findPerson(idPerson);
 		Group g = findGroup(idGroup);
+		if(p == null || g == null) {
+			return;
+		}
 		g.getList().add(p);
 		try {
 			em.getTransaction().begin();

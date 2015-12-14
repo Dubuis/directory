@@ -17,10 +17,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 	@NamedQuery(
 			name="findAllPersons",
 			query="select p from Person p"
-	),
-	@NamedQuery(
-			name="findAllPersonsInGroup",
-			query="select p from Person p, Group g where g.id = :idGroup"
 	)
 })
 public class Person {
