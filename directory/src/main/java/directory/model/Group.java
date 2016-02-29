@@ -3,7 +3,16 @@ package directory.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
 
 @Entity
 @Table(name=Group.TABLE)
@@ -14,7 +23,7 @@ import javax.persistence.*;
 			),
 	@NamedQuery(
 			name="findAllPersonsInGroup",
-			query="SELECT g.list FROM Group g WHERE g.id = :idGroup"
+			query="SELECT g FROM Group g WHERE g.id = :idGroup"
 			)
 })
 public class Group {

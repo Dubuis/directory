@@ -23,16 +23,28 @@ public class JpaDao implements IDao {
 	 * @throws ClassNotFoundException 
 	 */
 	public JpaDao() {
-		emf = Persistence.createEntityManagerFactory("oracle");
-		em = emf.createEntityManager();
+		this("directory");
+	}
+	
+	/**
+	 * Constructor with persistenceUnit name
+	 * @param persistenceUnitName
+	 */
+	public JpaDao(String persistenceUnitName) {
+		try {
+			emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+			em = emf.createEntityManager();
+		} catch(Throwable e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void init() {
-		
+		System.out.println("JpaDao initialization...");
 	}
 	
 	public void close() {
-		
+		System.out.println("JpaDao closed !");
 	}
 	
 	public List<Person> findAllPersons() {
@@ -42,9 +54,13 @@ public class JpaDao implements IDao {
 	}
 	
 	public List<Person> findAllPersonsInGroup(long groupId) {
-		List<Person> persons =
+		List<Group> g =
 				em.createNamedQuery("findAllPersonsInGroup")
 				.setParameter("idGroup", groupId).getResultList();
+		if(g.isEmpty()) {
+			return null;
+		}
+		List<Person> persons = g.get(0).getList();
 		return persons;
 	}
 	

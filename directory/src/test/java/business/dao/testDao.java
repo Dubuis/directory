@@ -26,7 +26,8 @@ public class testDao {
 	
 	@BeforeClass
 	public static void beforeAll()  {
-		dao = new JpaDao();
+		System.out.println("Starting Test");
+		dao = new JpaDao("test");
 		dao.init();
 	}
 
@@ -282,7 +283,7 @@ public class testDao {
 		dao.addPersonInGroup(7, 999);
 		//
 		List<Person> list = dao.findAllPersonsInGroup(999);
-		assertTrue(list.isEmpty());
+		assertNull(list);
 	}
 	
 	/**
@@ -330,7 +331,7 @@ public class testDao {
 		dao.removePersonFromGroup(9, 999);
 		
 		List<Person> list = dao.findAllPersonsInGroup(999);
-		assertTrue(list.isEmpty());
+		assertNull(list);
 	}
 	
 	/**
@@ -360,7 +361,7 @@ public class testDao {
 		dao.removePersonFromGroup(999, 999);
 		
 		List<Person> list = dao.findAllPersonsInGroup(999);
-		assertTrue(list.isEmpty());
+		assertNull(list);
 	}
 	
 	/**
@@ -396,11 +397,11 @@ public class testDao {
 	
 	/**
 	 *	Test recherche des personnes dans un groupe 
-	 *	qui existe est qui n'est pas vide
+	 *	qui n'existe pas
 	 */
 	@Test
 	public void testFindPersonsInUnexistantGroup() {
 		List<Person> list = dao.findAllPersonsInGroup(999);
-		assertTrue(list.isEmpty());
+		assertNull(list);
 	}
 }
