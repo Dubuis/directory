@@ -75,13 +75,14 @@ public class AdminController {
 	 * @param request
 	 * @return redirect to root if id/pwd false, redirect to adminManager.jsp else
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("login")
 	public String adminLogin(
 			@RequestParam(required=true) Long id,
 			@RequestParam(required=true) String password,
 			HttpServletRequest request
 			) {
-		if(id != ADMIN_ID.longValue() || !password.equals(ADMIN_PASSWORD)) {
+		if(id.longValue() != ADMIN_ID.longValue() || !password.equals(ADMIN_PASSWORD)) {
+			System.out.println("Connection fail");
 			return "redirect:";
 		}
 		request.getSession().setAttribute("admin", true);
@@ -93,7 +94,7 @@ public class AdminController {
 	 * @param request
 	 * @return redirect to root of standard user if not logged, in adminManager.jsp page else.
 	 */
-	@RequestMapping("/adminManager")
+	@RequestMapping("adminManager")
 	public String adminManager(
 			HttpServletRequest request
 			) {
@@ -110,7 +111,7 @@ public class AdminController {
 	 * @param request
 	 * @return redirect to root standard page id not logged in adminAddGroup.jsp page else.
 	 */
-	@RequestMapping("/addGroup")
+	@RequestMapping("addGroup")
 	public String addGroup(
 			@ModelAttribute Group group,
 			@RequestParam(required=false) Boolean modified,
@@ -130,7 +131,7 @@ public class AdminController {
 	 * TODO
 	 * @return
 	 */
-	@RequestMapping("/editPerson")
+	@RequestMapping("editPerson")
 	public String editPerson() {
 		return "adminEditPerson";
 	}

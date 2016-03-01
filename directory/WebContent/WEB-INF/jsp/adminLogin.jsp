@@ -10,7 +10,7 @@
 	<title>Admin Login</title>
 </head>
 <body>
-	<form action="login">
+	<form action="admin/login">
 		<label for="id">Identification : </label><input type="text" name="id" id="id" />
 		<br />
 		<label for="password">Password : </label><input type="password" name="password" id="password" />
